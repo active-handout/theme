@@ -1,0 +1,27 @@
+// Load Bulma's base styles and themes (including the minireset)
+@use "bulma/sass/base";
+@use "bulma/sass/themes";
+
+@use "bulma/sass/utilities/mixins";
+
+@use "bulma/sass/layout/section";
+@use "bulma/sass/layout/container";
+@use "bulma/sass/grid/columns";
+
+@use "bulma/sass/elements/content";
+@use "bulma/sass/elements/title";
+
+@use "bulma/sass/components/message";
+@use "bulma/sass/components/menu" with (
+    $menu-label-font-size: 0.9em
+);
+
+
+div.message.warning {
+    @extend .is-warning;
+}
+
+
+#lesson-list {
+    @extend .section;
+}

@@ -1,0 +1,9 @@
+{
+  "dev-dependencies": {
+    "bulma": "^1.0.0",
+    "sass": "^1.74.1"
+  },
+  "scripts": {
+    "scss": "sass --load-path=./node_modules ah_theme/css/theme.scss ah_theme/css/theme.css"
+  }
+}

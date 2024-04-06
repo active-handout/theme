@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>{% if page.title %}{{ page.title }} - {% endif %}{{ config.site_name }}</title>
+
+  <link rel="shortcut icon" href="{{ "img/favicon.ico"|url }}">
+  <link rel="stylesheet" href="{{ "css/theme.css"|url }}">
+  {% for path in config.extra_css %}
+    <link href="{{ path|url }}" rel="stylesheet">
+  {% endfor %}
+
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']]
+      }
+    };
+  </script>
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+  <script src="{{ "js/theme.js"|url }}"></script>
+
+  {% block extrahead %}
+  {% endblock %}
+
+  {% for script in config.extra_javascript %}
+    {{ script | script_tag }}
+  {% endfor %}
+
+</head>
+
+<body>
+
+  <div class="columns">
+    {% if page.parent %}
+  
+    <div class="column is-one-fifth" id="lesson-list">
+      <aside class="menu">
+        <p class="menu-label">{{ page.parent.title }}</p>
+        <ul class="menu-list">
+        {% for child in page.parent.children %}
+          {% if child.active %}
+            <li><a class="is-active">{{ child.title }}</a></li>
+          {% elif child.is_section == False %}
+            <li><a href="{{ child.url | url}}" >{{ child.title }}</a></li>
+          {% endif %}
+        {% endfor %}
+        </ul>
+      </aside>
+    </div>
+    {% endif %}
+    <div class="column">
+      <section class="section">
+        <div class="container content">
+          {% block content %}
+          {{ page.content }}
+          {% endblock %}
+        </div>
+      </section>
+    </div>
+  </div>
+  
+
+  <hr />
+
+  <h2>Next and previous links</h2>
+  {% if page.next_page or page.previous_page %}
+    <div>
+      {% if page.previous_page and page.previous_page.parent == page.parent %}
+        <a href="{{ page.previous_page.url|url }}" title="{{ page.previous_page.title }}">&#8592; Previous Page</a>
+      {% else %}
+        &#8592; Previous Page
+      {% endif %}
+      -
+      {% if page.next_page and page.next_page.parent == page.parent %}
+        <a href="{{ page.next_page.url|url }}" title="{{ page.next_page.title }}"/>Next Page &#8594;</a>
+      {% else %}
+        Next Page &#8594;
+      {% endif %}
+    </div>
+  {% endif %}
+  
+  <hr/>
+  
+  Built with <a href="https://www.mkdocs.org">MkDocs</a>.
+asdasd
+  <!--
+  MkDocs version      : {{ mkdocs_version }}
+  Docs Build Date UTC : {{ build_date_utc }}
+  -->
+
+</body>
+</html>
